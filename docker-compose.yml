@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+ ##############################
+ # MySql
+ ##############################
+ database:
+   image: mysql:8.0.28-debian
+   hostname: twinfacdatabase
+   networks:
+    - twinfac-net
+   command: --default-authentication-plugin=mysql_native_password
+   restart: always
+   environment:
+    MYSQL_DATABASE: 'db'
+    MYSQL_USER: 'twinfac'
+    MYSQL_PASSWORD: 'twinfacdbpassword'
+    MYSQL_ROOT_PASSWORD: 'twinfacdbpassword'
+   ports:
+    - '3307:3306'
+   expose:
+    - '3307'
+   volumes:
+    - datavolume:/var/lib/mysql
+
+ ##############################
+ # TwinFac Cloud Gateway
+ ##############################
+ server:
+  image: twinfac/server:latest
+  hostname: twinfaccloudgateway
+  networks:
+    - twinfac-net
+  restart: always
+  environment:
+    Tenant: ${TENANT}
+    Port: 8877
+    APIKey: ${KEY}
+    Manufacturer: ${MANUFACTURER}
+    DatabaseServer: twinfacdatabase
+  ports:
+    - '8877:8877'
+  expose:
+    - '8877'
+  links:
+    - "database"
+
+##############################
+# Volumes
+##############################
+volumes:
+  datavolume:
+
+##############################
+# Networks
+##############################
+networks:
+  twinfac-net:
+    name: twinfac-net
