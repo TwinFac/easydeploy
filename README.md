@@ -42,5 +42,5 @@ install.bat [API Key] [Company Code] [Manufacturer]
 e.g.
 
 ```bash
-install.bat '7wGLZcxBBRAgHD4wNRrh2tAUy5r6MeO22pRmXIILU6E=' 'ACME' 'ACME Factory'
+install.bat "7wGLZcxBBRAgHD4wNRrh2tAUy5r6MeO22pRmXIILU6E=" "ACME" "ACME Factory"
 ```
