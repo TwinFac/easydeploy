@@ -44,3 +44,11 @@ e.g.
 ```bash
 install.bat "7wGLZcxBBRAgHD4wNRrh2tAUy5r6MeO22pRmXIILU6E=" "ACME" "ACME Factory"
 ```
+
+## Usage
+
+Now that the installation is complete, you can log into your TwinFac Cloud Gateway by opening a web browser and going to:
+
+```
+http://localhost:8877/
+```
